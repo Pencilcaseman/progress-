@@ -88,12 +88,19 @@ namespace prog {
 			std::string info =
 			  fmt::format(detail::colors::separator, "[{} | {}]", elapsedStr, remainingStr);
 
+			std::string counter = fmt::format("{}/{}", m_current, m_end);
+
 			float progress = float(m_current) / float(m_end);
-			int barWidth   = size.cols - elapsedWidth - remainingTimeWidth - 4;
+
+			std::string percentStr =
+			  fmt::format(detail::colors::percent, "{:>6.2f}%", progress * 100.0f);
+
+			int barWidth = size.cols - elapsedWidth - remainingTimeWidth - counter.length() - 6 - 8;
 			if (barWidth < 0) barWidth = 1;
 			std::string bar = m_charset.bar(progress, barWidth);
 
-			return fmt::format("{} {}", bar, info);
+			return fmt::format(
+			  detail::colors::separator, "{}|{}| {} {}", percentStr, bar, counter, info);
 		}
 
 	private:

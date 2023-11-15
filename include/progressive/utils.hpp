@@ -6,6 +6,7 @@ namespace prog::detail {
 	namespace colors {
 		inline auto number	  = fmt::fg(fmt::color::orange) | fmt::emphasis::bold;
 		inline auto separator = fmt::fg(fmt::color::dark_gray) | fmt::emphasis::bold;
+		inline auto percent	  = fmt::fg(fmt::color::green) | fmt::emphasis::italic;
 	} // namespace colors
 
 	double time() {
