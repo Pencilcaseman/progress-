@@ -7,5 +7,8 @@ add_library(progressive STATIC
         include/progressive/utils.hpp)
 target_include_directories(progressive PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_subdirectory(vendor/fmt)
+if(NOT TARGET fmt)
+    add_subdirectory(vendor/fmt)
+endif()
+
 target_link_libraries(progressive PRIVATE fmt::fmt)
