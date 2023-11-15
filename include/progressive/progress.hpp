@@ -90,7 +90,13 @@ namespace prog {
 			detail::ConsoleSize size = detail::consoleSize();
 			double now				 = detail::time();
 			double elapsed			 = now - m_start;
-			double remainingTime	 = elapsed / float(m_current) * float(m_end - m_current);
+			double remainingTime;
+
+			if (m_current == 0) {
+				remainingTime = 0;
+			} else {
+				remainingTime = elapsed / float(m_current) * float(m_end - m_current);
+			}
 
 			int elapsedWidth	   = 0;
 			int remainingTimeWidth = 0;
@@ -108,7 +114,7 @@ namespace prog {
 			std::string percentStr =
 			  fmt::format(detail::colors::percent, "{:>6.2f}%", progress * 100.0f);
 
-			int barWidth = size.cols - elapsedWidth - remainingTimeWidth - counter.length() - 6 - 8;
+			int barWidth = size.cols - elapsedWidth - remainingTimeWidth - counter.length() - 6 - 9;
 			if (barWidth < 0) barWidth = 1;
 			std::string bar = m_charset.bar(progress, barWidth);
 
