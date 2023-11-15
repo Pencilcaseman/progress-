@@ -46,7 +46,7 @@ namespace prog {
 		std::string m_fullChar;
 	};
 
-	CharSet defaultCharSet() {
+	CharSet charsetDefault() {
 		CharSet result;
 		result.empty()		  = fmt::format("{}", " ");
 		result.intermediate() = {
@@ -61,6 +61,38 @@ namespace prog {
 		  fmt::format("█"),
 		};
 		result.full() = fmt::format("█");
+
+		return result;
+	}
+
+	CharSet charsetFade() {
+		CharSet result;
+		result.empty()		  = fmt::format("{}", " ");
+		result.intermediate() = {
+		  fmt::format(" "),
+		  fmt::format("░"),
+		  fmt::format("▒"),
+		  fmt::format("▓"),
+		  fmt::format("█"),
+		};
+		result.full() = fmt::format("█");
+
+		return result;
+	}
+
+	CharSet charsetAscii() {
+		CharSet result;
+		result.empty()		  = fmt::format("{}", " ");
+		result.intermediate() = {
+		  fmt::format(" "),
+		  fmt::format("."),
+		  fmt::format("o"),
+		  fmt::format("O"),
+		  fmt::format("0"),
+		  fmt::format("@"),
+		  fmt::format("#"),
+		};
+		result.full() = fmt::format("#");
 
 		return result;
 	}

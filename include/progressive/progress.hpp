@@ -15,6 +15,9 @@ namespace prog {
 
 		explicit Progress(T initial) : m_current(initial), m_start(detail::time()) {}
 
+		Progress(T initial, const CharSet &set) :
+				m_current(initial), m_start(detail::time()), m_charset(set) {}
+
 		~Progress() {
 			update(true);
 			std::cout << std::endl;
@@ -65,6 +68,13 @@ namespace prog {
 		const T &get() const { return m_current; }
 		T &get() { return m_current; }
 
+		void log(const std::string &message) {
+			// Clear the line
+			std::cout << "\r" << std::string(detail::consoleSize().cols - 1, ' ') << "\r";
+			fmt::print("{}\n", message);
+			update(true); // Force update
+		}
+
 		void update(bool force = false) {
 			double now = detail::time();
 
@@ -112,6 +122,6 @@ namespace prog {
 		double m_prevUpdate = 0;
 		double m_start		= 0;
 
-		CharSet m_charset = defaultCharSet();
+		CharSet m_charset = charsetDefault();
 	};
 } // namespace prog
