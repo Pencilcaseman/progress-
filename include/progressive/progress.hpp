@@ -62,6 +62,9 @@ namespace prog {
 			return *this;
 		}
 
+		const T &get() const { return m_current; }
+		T &get() { return m_current; }
+
 		void update(bool force = false) {
 			double now = detail::time();
 
