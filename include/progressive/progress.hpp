@@ -70,7 +70,7 @@ namespace prog {
 
 		void log(const std::string &message) {
 			// Clear the line
-			std::cout << "\r" << std::string(detail::consoleSize().cols - 1, ' ') << "\r";
+			fmt::print("{}\r", std::string(detail::consoleSize().cols, ' '));
 			fmt::print("{}\n", message);
 			update(true); // Force update
 		}
